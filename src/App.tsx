@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
+import Dashboard from "./components/dashboard";
+import { MantineProvider } from "@mantine/core";
 
 const App: React.FC = () => {
   return (
-    <>
-      <p className="read-the-docs">BiteSpeed</p>
-    </>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <Dashboard />
+    </MantineProvider>
   );
 };
 
