@@ -6,7 +6,7 @@ import {
   MediaQuery,
   useMantineTheme,
 } from "@mantine/core";
-
+import NodesPanel from "./nodesPanel";
 export default function Dashboard() {
   const theme = useMantineTheme();
   return (
@@ -25,6 +25,7 @@ export default function Dashboard() {
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
           <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
             {/* Application sidebar */}
+            <NodesPanel />
           </Aside>
         </MediaQuery>
       }
