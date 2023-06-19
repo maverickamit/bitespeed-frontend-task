@@ -7,6 +7,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import NodesPanel from "./nodesPanel";
+import DnDFlow from "./dndFlow.tsx";
 export default function Dashboard() {
   const theme = useMantineTheme();
   return (
@@ -45,6 +46,7 @@ export default function Dashboard() {
       }
     >
       {/* Application goes here */}
+      <DnDFlow />
     </AppShell>
   );
 }
