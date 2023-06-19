@@ -5,7 +5,7 @@ import "./messageNode.css";
 
 const MessageNode: React.FC = () => {
   const [, drag] = useDrag(() => ({
-    type: "text",
+    type: "message",
   }));
 
   return (
