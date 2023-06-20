@@ -6,3 +6,10 @@
   color: black;
   border: 1px solid black;
 }
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+
+  gap: 10px;
+}
