@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useContext } from "react";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -10,6 +10,8 @@ import ReactFlow, {
   ReactFlowInstance,
 } from "reactflow";
 import { useDrop } from "react-dnd";
+import { SidePanelContext } from "./dashboard";
+import { XYCoord } from "react-dnd";
 import "reactflow/dist/style.css";
 import "./dndFlow.css";
 
@@ -29,6 +31,8 @@ const DnDFlow: React.FC = () => {
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
   const [numOfNodes, setNumOfNodes] = useState(1);
+
+  const sidePanelContextValue = useContext(SidePanelContext);
 
   const onConnect = useCallback(
     (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
@@ -74,6 +78,7 @@ const DnDFlow: React.FC = () => {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onInit={setReactFlowInstance}
+            onNodeClick={() => sidePanelContextValue.setSettingsPanelOpen(true)} //Displays settings panel on clicking a node
           >
             <Controls />
           </ReactFlow>
