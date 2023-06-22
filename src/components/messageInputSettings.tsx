@@ -10,6 +10,12 @@ const MessageInputSettings: React.FC = () => {
   const [message, setMessage] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
+    if (sidePanelContextValue.selectedNode) {
+      sidePanelContextValue.setSelectedNode({
+        ...sidePanelContextValue.selectedNode,
+        data: { label: e.target.value },
+      });
+    }
   };
   //Whenever the value of sidePanelContextValue changes, message is updated
   useEffect(() => {

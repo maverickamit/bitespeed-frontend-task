@@ -79,6 +79,21 @@ const DnDFlow: React.FC = () => {
     sidePanelContextValue.setSelectedNode(node);
   };
 
+  useEffect(() => {
+    setNodes((nds) =>
+      nds.map((node) => {
+        if (node.id === sidePanelContextValue.selectedNode?.id) {
+          if (sidePanelContextValue.selectedNode)
+            node.data = {
+              ...node.data,
+              label: sidePanelContextValue.selectedNode.data.label,
+            };
+        }
+        return node;
+      })
+    );
+  }, [sidePanelContextValue.selectedNode, setNodes]);
+
   return (
     <div className="dnd-flow" ref={drop}>
       <div className="reactflow-wrapper" ref={reactFlowWrapper}>
