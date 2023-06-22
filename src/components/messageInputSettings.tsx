@@ -2,25 +2,25 @@ import React, { useContext, useEffect } from "react";
 import { Text } from "@mantine/core";
 import { useState } from "react";
 import { ArrowLeft } from "tabler-icons-react";
-import { SidePanelContext } from "./dashboard";
+import { AppContext } from "./dashboard";
 import "./messageInputSettings.css";
 
 const MessageInputSettings: React.FC = () => {
-  const sidePanelContextValue = useContext(SidePanelContext);
+  const appContextValue = useContext(AppContext);
   const [message, setMessage] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
-    if (sidePanelContextValue.selectedNode) {
-      sidePanelContextValue.setSelectedNode({
-        ...sidePanelContextValue.selectedNode,
+    if (appContextValue.selectedNode) {
+      appContextValue.setSelectedNode({
+        ...appContextValue.selectedNode,
         data: { label: e.target.value },
       });
     }
   };
-  //Whenever the value of sidePanelContextValue changes, message is updated
+  //Whenever the value of appContextValue changes, message is updated
   useEffect(() => {
-    setMessage(sidePanelContextValue.selectedNode?.data.label);
-  }, [sidePanelContextValue]);
+    setMessage(appContextValue.selectedNode?.data.label);
+  }, [appContextValue]);
 
   return (
     <div className="message-input-settings">
@@ -28,7 +28,7 @@ const MessageInputSettings: React.FC = () => {
         <ArrowLeft
           className="left-arrow"
           size={30}
-          onClick={() => sidePanelContextValue.setSettingsPanelOpen(false)}
+          onClick={() => appContextValue.setSettingsPanelOpen(false)}
         />
         <Text>Message</Text>
       </div>

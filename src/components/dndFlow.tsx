@@ -19,7 +19,7 @@ import ReactFlow, {
   NodeTypes,
 } from "reactflow";
 import { useDrop } from "react-dnd";
-import { SidePanelContext } from "./dashboard";
+import { AppContext } from "./dashboard";
 import { XYCoord } from "react-dnd";
 import SendMessageNode from "./sendMessageNode";
 import "reactflow/dist/style.css";
@@ -46,7 +46,7 @@ const DnDFlow: React.FC = () => {
     useState<ReactFlowInstance | null>(null);
   const [numOfNodes, setNumOfNodes] = useState(1);
 
-  const sidePanelContextValue = useContext(SidePanelContext);
+  const appContextValue = useContext(AppContext);
 
   const onConnect = useCallback(
     (params: Edge | Connection) =>
@@ -58,7 +58,10 @@ const DnDFlow: React.FC = () => {
       }),
     [setEdges]
   );
-
+  useEffect(() => {
+    const nodesCpy = [...nodes];
+    console.log(edges, nodes);
+  }, [edges, nodes]);
   const [, drop] = useDrop(
     () => ({
       accept: "message",
@@ -88,24 +91,24 @@ const DnDFlow: React.FC = () => {
   );
 
   const handleNodeClick = (_event: React.MouseEvent, node: Node) => {
-    sidePanelContextValue.setSettingsPanelOpen(true);
-    sidePanelContextValue.setSelectedNode(node);
+    appContextValue.setSettingsPanelOpen(true);
+    appContextValue.setSelectedNode(node);
   };
 
   useEffect(() => {
     setNodes((nds) =>
       nds.map((node) => {
-        if (node.id === sidePanelContextValue.selectedNode?.id) {
-          if (sidePanelContextValue.selectedNode)
+        if (node.id === appContextValue.selectedNode?.id) {
+          if (appContextValue.selectedNode)
             node.data = {
               ...node.data,
-              label: sidePanelContextValue.selectedNode.data.label,
+              label: appContextValue.selectedNode.data.label,
             };
         }
         return node;
       })
     );
-  }, [sidePanelContextValue.selectedNode, setNodes]);
+  }, [appContextValue.selectedNode, setNodes]);
 
   return (
     <div className="dnd-flow" ref={drop}>
@@ -120,9 +123,7 @@ const DnDFlow: React.FC = () => {
             onConnect={onConnect}
             onInit={setReactFlowInstance}
             onNodeClick={handleNodeClick} //Displays settings panel on clicking a node
-            onPaneClick={() =>
-              sidePanelContextValue.setSettingsPanelOpen(false)
-            }
+            onPaneClick={() => appContextValue.setSettingsPanelOpen(false)}
           >
             <Controls />
           </ReactFlow>

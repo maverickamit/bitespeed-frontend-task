@@ -12,23 +12,21 @@ import NodesPanel from "./nodesPanel";
 import SettingsPanel from "./settingsPanel.tsx";
 import DnDFlow from "./dndFlow.tsx";
 import SaveButton from "./saveButton.tsx";
-interface SidePanelContext {
+interface AppContext {
   settingsPanelOpen: boolean;
   selectedNode: Node | null;
   setSettingsPanelOpen: (arg1: boolean) => void;
   setSelectedNode: (arg1: Node) => void;
 }
 
-export const SidePanelContext = createContext<SidePanelContext>(
-  {} as SidePanelContext
-);
+export const AppContext = createContext<AppContext>({} as AppContext);
 
 export default function Dashboard() {
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const theme = useMantineTheme();
   return (
-    <SidePanelContext.Provider
+    <AppContext.Provider
       value={{
         settingsPanelOpen,
         selectedNode,
@@ -76,6 +74,6 @@ export default function Dashboard() {
         {/* Application goes here */}
         <DnDFlow />
       </AppShell>
-    </SidePanelContext.Provider>
+    </AppContext.Provider>
   );
 }
