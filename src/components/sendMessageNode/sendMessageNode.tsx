@@ -2,8 +2,8 @@ import { Text } from "@mantine/core";
 import { useNodeId } from "reactflow";
 import { Handle, NodeProps, Position } from "reactflow";
 import { BrandWhatsapp, Message } from "tabler-icons-react";
-import "./sendMessageNode.css";
 import CustomHandle from "../customHandle/customHandle";
+import styles from "./sendMessageNode.module.css";
 
 const SendMessageNode = ({ data }: NodeProps) => {
   const nodeId = useNodeId();
@@ -16,13 +16,13 @@ const SendMessageNode = ({ data }: NodeProps) => {
         position={Position.Left}
         isConnectable={true}
       />
-      <div className="send-message">
-        <div className="send-message-header">
+      <div className={styles["send-message"]}>
+        <div className={styles["send-message-header"]}>
           <Message size={20} />
           <Text size={15}>Send Message</Text>
           <BrandWhatsapp size={20} />
         </div>
-        <Text size={20} className="send-message-label">
+        <Text size={20} className={styles["send-message-label"]}>
           {data.label}
         </Text>
       </div>

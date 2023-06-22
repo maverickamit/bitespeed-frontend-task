@@ -23,7 +23,7 @@ import { AppContext } from "../dashboard/dashboard";
 import { XYCoord } from "react-dnd";
 import SendMessageNode from "../sendMessageNode/sendMessageNode";
 import "reactflow/dist/style.css";
-import "./dndFlow.css";
+import styles from "./dndFlow.module.css";
 
 const initialNodes = [
   {
@@ -128,8 +128,8 @@ const DnDFlow: React.FC = () => {
   }, [appContextValue.selectedNode, setNodes]);
 
   return (
-    <div className="dnd-flow" ref={drop}>
-      <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+    <div className={styles["dnd-flow"]} ref={drop}>
+      <div className={styles["reactflow-wrapper"]} ref={reactFlowWrapper}>
         <ReactFlowProvider>
           <ReactFlow
             nodes={nodes}

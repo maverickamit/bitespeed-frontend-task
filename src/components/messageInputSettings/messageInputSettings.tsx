@@ -3,7 +3,7 @@ import { Text } from "@mantine/core";
 import { useState } from "react";
 import { ArrowLeft } from "tabler-icons-react";
 import { AppContext } from "../dashboard/dashboard";
-import "./messageInputSettings.css";
+import styles from "./messageInputSettings.module.css";
 
 const MessageInputSettings: React.FC = () => {
   const appContextValue = useContext(AppContext);
@@ -23,16 +23,16 @@ const MessageInputSettings: React.FC = () => {
   }, [appContextValue]);
 
   return (
-    <div className="message-input-settings">
-      <div className="header">
+    <div className={styles["message-input-settings"]}>
+      <div className={styles["header"]}>
         <ArrowLeft
-          className="left-arrow"
+          className={styles["left-arrow"]}
           size={30}
           onClick={() => appContextValue.setSettingsPanelOpen(false)}
         />
         <Text>Message</Text>
       </div>
-      <div className="text-input">
+      <div className={styles["text-input"]}>
         <textarea value={message} onChange={handleChange} />
       </div>
     </div>
