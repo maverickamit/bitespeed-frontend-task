@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Text } from "@mantine/core";
 import { useState } from "react";
 import { ArrowLeft } from "tabler-icons-react";
@@ -6,11 +6,15 @@ import { SidePanelContext } from "./dashboard";
 import "./messageInputSettings.css";
 
 const MessageInputSettings: React.FC = () => {
+  const sidePanelContextValue = useContext(SidePanelContext);
   const [message, setMessage] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
-  const sidePanelContextValue = useContext(SidePanelContext);
+  //Whenever the value of sidePanelContextValue changes, message is updated
+  useEffect(() => {
+    setMessage(sidePanelContextValue.nodeLabel);
+  }, [sidePanelContextValue]);
 
   return (
     <div className="message-input-settings">

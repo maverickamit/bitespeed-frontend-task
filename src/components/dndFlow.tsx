@@ -8,6 +8,7 @@ import ReactFlow, {
   Edge,
   Connection,
   ReactFlowInstance,
+  Node,
 } from "reactflow";
 import { useDrop } from "react-dnd";
 import { SidePanelContext } from "./dashboard";
@@ -67,6 +68,11 @@ const DnDFlow: React.FC = () => {
     [numOfNodes, reactFlowInstance]
   );
 
+  const handleNodeClick = (event: React.MouseEvent, node: Node) => {
+    sidePanelContextValue.setSettingsPanelOpen(true);
+    sidePanelContextValue.setNodeLabel(node.data.label);
+  };
+
   return (
     <div className="dnd-flow" ref={drop}>
       <div className="reactflow-wrapper" ref={reactFlowWrapper}>
@@ -78,7 +84,7 @@ const DnDFlow: React.FC = () => {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onInit={setReactFlowInstance}
-            onNodeClick={() => sidePanelContextValue.setSettingsPanelOpen(true)} //Displays settings panel on clicking a node
+            onNodeClick={handleNodeClick} //Displays settings panel on clicking a node
           >
             <Controls />
           </ReactFlow>
