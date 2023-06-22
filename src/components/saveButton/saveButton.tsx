@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
 import { useContext } from "react";
 import { notifications } from "@mantine/notifications";
-import { AppContext } from "./dashboard";
+import { AppContext } from "../dashboard/dashboard";
 
 const SaveButton: React.FC = () => {
   const appContextValue = useContext(AppContext);

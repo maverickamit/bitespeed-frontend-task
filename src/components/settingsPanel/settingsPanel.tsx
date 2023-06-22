@@ -1,5 +1,5 @@
 import React from "react";
-import MessageInputSettings from "./messageInputSettings";
+import MessageInputSettings from "../messageInputSettings/messageInputSettings";
 
 const SettingsPanel: React.FC = () => {
   return (

@@ -19,9 +19,9 @@ import ReactFlow, {
   NodeTypes,
 } from "reactflow";
 import { useDrop } from "react-dnd";
-import { AppContext } from "./dashboard";
+import { AppContext } from "../dashboard/dashboard";
 import { XYCoord } from "react-dnd";
-import SendMessageNode from "./sendMessageNode";
+import SendMessageNode from "../sendMessageNode/sendMessageNode";
 import "reactflow/dist/style.css";
 import "./dndFlow.css";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Dashboard from "./components/dashboard";
+import Dashboard from "./components/dashboard/dashboard";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { DndProvider } from "react-dnd";

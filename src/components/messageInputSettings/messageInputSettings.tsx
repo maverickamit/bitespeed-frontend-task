@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Text } from "@mantine/core";
 import { useState } from "react";
 import { ArrowLeft } from "tabler-icons-react";
-import { AppContext } from "./dashboard";
+import { AppContext } from "../dashboard/dashboard";
 import "./messageInputSettings.css";
 
 const MessageInputSettings: React.FC = () => {

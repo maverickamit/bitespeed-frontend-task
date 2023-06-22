@@ -1,4 +1,4 @@
-import MessageNode from "./messageNode";
+import MessageNode from "../messageNode/messageNode";
 
 const NodesPanel: React.FC = () => {
   return (

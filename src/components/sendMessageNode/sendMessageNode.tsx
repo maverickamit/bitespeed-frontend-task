@@ -3,7 +3,7 @@ import { useNodeId } from "reactflow";
 import { Handle, NodeProps, Position } from "reactflow";
 import { BrandWhatsapp, Message } from "tabler-icons-react";
 import "./sendMessageNode.css";
-import CustomHandle from "./customHandle";
+import CustomHandle from "../customHandle/customHandle";
 
 const SendMessageNode = ({ data }: NodeProps) => {
   const nodeId = useNodeId();

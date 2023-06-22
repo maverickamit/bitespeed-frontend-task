@@ -8,10 +8,10 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { Node } from "reactflow";
-import NodesPanel from "./nodesPanel";
-import SettingsPanel from "./settingsPanel.tsx";
-import DnDFlow from "./dndFlow.tsx";
-import SaveButton from "./saveButton.tsx";
+import NodesPanel from "../nodesPanel/nodesPanel.tsx";
+import SettingsPanel from "../settingsPanel/settingsPanel.tsx";
+import DnDFlow from "../dndFlow/dndFlow.tsx";
+import SaveButton from "../saveButton/saveButton.tsx";
 interface AppContext {
   settingsPanelOpen: boolean;
   selectedNode: Node | null;
