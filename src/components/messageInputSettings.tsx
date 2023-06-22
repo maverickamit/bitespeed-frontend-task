@@ -13,7 +13,7 @@ const MessageInputSettings: React.FC = () => {
   };
   //Whenever the value of sidePanelContextValue changes, message is updated
   useEffect(() => {
-    setMessage(sidePanelContextValue.nodeLabel);
+    setMessage(sidePanelContextValue.selectedNode?.data.label);
   }, [sidePanelContextValue]);
 
   return (

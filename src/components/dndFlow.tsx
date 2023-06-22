@@ -1,4 +1,10 @@
-import React, { useState, useRef, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -70,7 +76,7 @@ const DnDFlow: React.FC = () => {
 
   const handleNodeClick = (event: React.MouseEvent, node: Node) => {
     sidePanelContextValue.setSettingsPanelOpen(true);
-    sidePanelContextValue.setNodeLabel(node.data.label);
+    sidePanelContextValue.setSelectedNode(node);
   };
 
   return (

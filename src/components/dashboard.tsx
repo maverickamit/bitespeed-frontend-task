@@ -7,14 +7,15 @@ import {
   MediaQuery,
   useMantineTheme,
 } from "@mantine/core";
+import { Node } from "reactflow";
 import NodesPanel from "./nodesPanel";
 import SettingsPanel from "./settingsPanel.tsx";
 import DnDFlow from "./dndFlow.tsx";
 interface SidePanelContext {
   settingsPanelOpen: boolean;
-  nodeLabel: string;
+  selectedNode: Node | null;
   setSettingsPanelOpen: (arg1: boolean) => void;
-  setNodeLabel: (arg1: string) => void;
+  setSelectedNode: (arg1: Node) => void;
 }
 
 export const SidePanelContext = createContext<SidePanelContext>(
@@ -23,15 +24,15 @@ export const SidePanelContext = createContext<SidePanelContext>(
 
 export default function Dashboard() {
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
-  const [nodeLabel, setNodeLabel] = useState("");
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const theme = useMantineTheme();
   return (
     <SidePanelContext.Provider
       value={{
         settingsPanelOpen,
-        nodeLabel,
+        selectedNode,
         setSettingsPanelOpen,
-        setNodeLabel,
+        setSelectedNode,
       }}
     >
       <AppShell
