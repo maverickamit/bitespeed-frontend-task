@@ -29,9 +29,15 @@ const CustomHandle = (props: CustomHandleProps) => {
 
   const isHandleConnectable = useMemo(() => {
     if (typeof props.isConnectable === "number") {
+      let sourceConnection = 0;
       const node = nodeInternals.get(nodeId);
       const connectedEdges = getConnectedEdges([node], edges);
-      return connectedEdges.length < props.isConnectable;
+      connectedEdges.forEach((edge) => {
+        if (edge.source === nodeId) {
+          sourceConnection++;
+        }
+      });
+      return sourceConnection < props.isConnectable;
     }
 
     return props.isConnectable;
