@@ -85,6 +85,9 @@ const DnDFlow: React.FC = () => {
             onConnect={onConnect}
             onInit={setReactFlowInstance}
             onNodeClick={handleNodeClick} //Displays settings panel on clicking a node
+            onPaneClick={() =>
+              sidePanelContextValue.setSettingsPanelOpen(false)
+            }
           >
             <Controls />
           </ReactFlow>
