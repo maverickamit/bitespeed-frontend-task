@@ -15,21 +15,28 @@ import ReactFlow, {
   Connection,
   ReactFlowInstance,
   Node,
+  MarkerType,
+  NodeTypes,
 } from "reactflow";
 import { useDrop } from "react-dnd";
 import { SidePanelContext } from "./dashboard";
 import { XYCoord } from "react-dnd";
+import SendMessageNode from "./sendMessageNode";
 import "reactflow/dist/style.css";
 import "./dndFlow.css";
 
 const initialNodes = [
   {
     id: "1",
-    type: "default",
+    type: "sendMessage",
     data: { label: "default node" },
     position: { x: 10, y: 10 },
   },
 ];
+
+const nodeTypes: NodeTypes = {
+  sendMessage: SendMessageNode,
+};
 
 const DnDFlow: React.FC = () => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -42,7 +49,13 @@ const DnDFlow: React.FC = () => {
   const sidePanelContextValue = useContext(SidePanelContext);
 
   const onConnect = useCallback(
-    (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
+    (params: Edge | Connection) =>
+      setEdges((eds) => {
+        return addEdge(
+          { ...params, markerEnd: { type: MarkerType.Arrow } },
+          eds
+        );
+      }),
     [setEdges]
   );
 
@@ -63,7 +76,7 @@ const DnDFlow: React.FC = () => {
           prevNodes.concat({
             id: num.toString(10),
             position,
-            type: "default",
+            type: "sendMessage",
             data: { label: "default node " + num.toString(10) },
             draggable: true,
           })
@@ -100,6 +113,7 @@ const DnDFlow: React.FC = () => {
         <ReactFlowProvider>
           <ReactFlow
             nodes={nodes}
+            nodeTypes={nodeTypes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
