@@ -11,6 +11,7 @@ import { Node } from "reactflow";
 import NodesPanel from "./nodesPanel";
 import SettingsPanel from "./settingsPanel.tsx";
 import DnDFlow from "./dndFlow.tsx";
+import SaveButton from "./saveButton.tsx";
 interface SidePanelContext {
   settingsPanelOpen: boolean;
   selectedNode: Node | null;
@@ -60,11 +61,14 @@ export default function Dashboard() {
               style={{
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "space-between",
                 height: "100%",
                 backgroundColor: theme.colors.gray[2],
+                padding: "0 100px",
               }}
             >
               <Text p="md">Flow Builder</Text>
+              <SaveButton />
             </div>
           </Header>
         }
