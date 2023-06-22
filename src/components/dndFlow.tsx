@@ -58,10 +58,27 @@ const DnDFlow: React.FC = () => {
       }),
     [setEdges]
   );
-  useEffect(() => {
-    const nodesCpy = [...nodes];
-    console.log(edges, nodes);
-  }, [edges, nodes]);
+
+  // checkNodesConnectionStatus is used to check the status of nodes connections.
+  //If there are more empty target handles than the allowed supplied value, then checkNodesConnectionStatus
+  //returns false. Otherwise it returns true.
+  const checkNodesConnectionStatus = (val: number): boolean => {
+    //val is the number of empty target handles allowed
+    const nodeIds = nodes.map((node) => node.id);
+    edges.map((edge) => {
+      if (nodeIds.includes(edge.target)) {
+        const index = nodeIds.indexOf(edge.target);
+        if (index !== -1) {
+          nodeIds.splice(index, 1);
+        }
+      }
+    });
+    if (nodeIds.length > val) return false;
+    return true;
+  };
+
+  appContextValue.checkNodesConnectionStatus = checkNodesConnectionStatus;
+
   const [, drop] = useDrop(
     () => ({
       accept: "message",

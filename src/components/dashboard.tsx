@@ -17,6 +17,7 @@ interface AppContext {
   selectedNode: Node | null;
   setSettingsPanelOpen: (arg1: boolean) => void;
   setSelectedNode: (arg1: Node) => void;
+  checkNodesConnectionStatus?: (arg1: number) => boolean;
 }
 
 export const AppContext = createContext<AppContext>({} as AppContext);
