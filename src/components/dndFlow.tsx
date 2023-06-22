@@ -32,7 +32,7 @@ const initialNodes = [
 ];
 
 const DnDFlow: React.FC = () => {
-  const reactFlowWrapper = useRef(null);
+  const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] =
@@ -53,7 +53,7 @@ const DnDFlow: React.FC = () => {
         const num = numOfNodes + 1;
         const delta = monitor.getSourceClientOffset() as XYCoord;
         const reactFlowBounds =
-          reactFlowWrapper.current.getBoundingClientRect();
+          reactFlowWrapper.current?.getBoundingClientRect();
 
         const position = reactFlowInstance.project({
           x: delta.x - reactFlowBounds.left,
@@ -74,7 +74,7 @@ const DnDFlow: React.FC = () => {
     [numOfNodes, reactFlowInstance]
   );
 
-  const handleNodeClick = (event: React.MouseEvent, node: Node) => {
+  const handleNodeClick = (_event: React.MouseEvent, node: Node) => {
     sidePanelContextValue.setSettingsPanelOpen(true);
     sidePanelContextValue.setSelectedNode(node);
   };
