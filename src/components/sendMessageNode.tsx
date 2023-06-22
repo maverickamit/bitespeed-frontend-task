@@ -2,13 +2,13 @@ import { Text } from "@mantine/core";
 import { Handle, NodeProps, Position } from "reactflow";
 import { BrandWhatsapp, Message } from "tabler-icons-react";
 import "./sendMessageNode.css";
+import CustomHandle from "./customHandle";
 const SendMessageNode = ({ data, isConnectable }: NodeProps) => {
   return (
     <>
       <Handle
         type="target"
         position={Position.Left}
-        style={{ background: "#555" }}
         onConnect={(params) => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       />
@@ -22,12 +22,11 @@ const SendMessageNode = ({ data, isConnectable }: NodeProps) => {
           {data.label}
         </Text>
       </div>
-      <Handle
+      <CustomHandle
         type="source"
         position={Position.Right}
         id="a"
-        style={{ background: "#555" }}
-        isConnectable={isConnectable}
+        isConnectable={1}
       />
     </>
   );
