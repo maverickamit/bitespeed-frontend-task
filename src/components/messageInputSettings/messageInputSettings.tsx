@@ -5,9 +5,11 @@ import { ArrowLeft } from "tabler-icons-react";
 import { AppContext } from "../dashboard/dashboard";
 import styles from "./messageInputSettings.module.css";
 
+//MessageInputSettings is used on settings panel to help edit the data label of user selected node
 const MessageInputSettings: React.FC = () => {
   const appContextValue = useContext(AppContext);
   const [message, setMessage] = useState("");
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
     if (appContextValue.selectedNode) {
@@ -18,6 +20,7 @@ const MessageInputSettings: React.FC = () => {
     }
   };
   //Whenever the value of appContextValue changes, message is updated
+  //This is required to display updated message when a different node is selected after the current one
   useEffect(() => {
     setMessage(appContextValue.selectedNode?.data.label);
   }, [appContextValue]);

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { notifications } from "@mantine/notifications";
 import { AppContext } from "../dashboard/dashboard";
 
+//SaveButton component is used to save the flow
 const SaveButton: React.FC = () => {
   const appContextValue = useContext(AppContext);
 

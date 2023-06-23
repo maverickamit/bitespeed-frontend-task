@@ -23,10 +23,12 @@ const selector = (s: SelectorsProps) => ({
   edges: s.edges,
 });
 
+//CustomHandle component is used to create a customized handle for sendMessageNode
 const CustomHandle = (props: CustomHandleProps) => {
   const { nodeInternals, edges } = useStore(selector);
   const nodeId = useNodeId();
-
+  //isHandleConnectable function is used to determine if the custom handle is connectable.
+  //It returns true if number of connections is less than specified allowable number of connections.
   const isHandleConnectable = useMemo(() => {
     if (typeof props.isConnectable === "number") {
       let sourceConnection = 0;

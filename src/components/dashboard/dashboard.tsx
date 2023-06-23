@@ -13,14 +13,18 @@ import SettingsPanel from "../settingsPanel/settingsPanel.tsx";
 import DnDFlow from "../dndFlow/dndFlow.tsx";
 import SaveButton from "../saveButton/saveButton.tsx";
 interface AppContext {
-  settingsPanelOpen: boolean;
-  selectedNode: Node | null;
+  settingsPanelOpen: boolean; //indicates if the settings panel is visible on sidebar
+  selectedNode: Node | null; //holds the value of the node selected by the user on mouseclick
   setSettingsPanelOpen: (arg1: boolean) => void;
   setSelectedNode: (arg1: Node) => void;
-  checkNodesConnectionStatus?: (arg1: number) => boolean;
+  checkNodesConnectionStatus?: (arg1: number) => boolean; //helps to check if the flow is allowed to be saved
 }
-
+//AppContext holds all the necessary values/functions that are required across different components
+//in the application. It's using context api.
 export const AppContext = createContext<AppContext>({} as AppContext);
+
+//Dashboard component is used to contain different components inside it and for giving the
+//general layout of the web application.
 
 export default function Dashboard() {
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);

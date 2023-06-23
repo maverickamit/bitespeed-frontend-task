@@ -37,7 +37,7 @@ const initialNodes = [
 const nodeTypes: NodeTypes = {
   sendMessage: SendMessageNode,
 };
-
+//DnDFlow component is used to render the react flow instance
 const DnDFlow: React.FC = () => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -48,11 +48,12 @@ const DnDFlow: React.FC = () => {
 
   const appContextValue = useContext(AppContext);
 
+  //onConnect runs while connecting an edge to a valid connectable handle
   const onConnect = useCallback(
     (params: Edge | Connection) =>
       setEdges((eds) => {
         return addEdge(
-          { ...params, markerEnd: { type: MarkerType.Arrow } },
+          { ...params, markerEnd: { type: MarkerType.Arrow } }, //choosing markerend as an arrow-head
           eds
         );
       }),
@@ -79,11 +80,14 @@ const DnDFlow: React.FC = () => {
 
   appContextValue.checkNodesConnectionStatus = checkNodesConnectionStatus;
 
+  //On dropping the message node from the nodes panel onto the dndFlow component
+  //a new node is created at the position of drop
   const [, drop] = useDrop(
     () => ({
       accept: "message",
       drop: (_, monitor) => {
         const num = numOfNodes + 1;
+        //This is used to get the client offset of the drag source component's root DOM node
         const delta = monitor.getSourceClientOffset() as XYCoord;
         const reactFlowBounds =
           reactFlowWrapper.current?.getBoundingClientRect();
@@ -93,6 +97,7 @@ const DnDFlow: React.FC = () => {
           y: delta.y - reactFlowBounds.top,
         });
         setNodes((prevNodes) =>
+          //adding a new node of type sendMessage
           prevNodes.concat({
             id: num.toString(10),
             position,
@@ -111,7 +116,8 @@ const DnDFlow: React.FC = () => {
     appContextValue.setSettingsPanelOpen(true);
     appContextValue.setSelectedNode(node);
   };
-
+  //Updates the data label of the selected node when value of appContextValue.selectedNode changes
+  //appContextValue.selectedNode value is updated from the MessageInputSettings component on settings panel
   useEffect(() => {
     setNodes((nds) =>
       nds.map((node) => {

@@ -5,6 +5,7 @@ import { BrandWhatsapp, Message } from "tabler-icons-react";
 import CustomHandle from "../customHandle/customHandle";
 import styles from "./sendMessageNode.module.css";
 
+//SendMessageNode is a custom node
 const SendMessageNode = ({ data }: NodeProps) => {
   const nodeId = useNodeId();
 
